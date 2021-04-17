@@ -6,6 +6,18 @@ import NewExpense from './components/NewExpense/NewExpense';
 const App = () => {
   const [expenses, setExpenses] = useState([
     {
+      id: 'expense-00011219',
+      title: 'New Home',
+      amount: 485000,
+      date: new Date(2019, 1, 26),
+    },
+    {
+      id: 'expense-42091219',
+      title: 'New Car',
+      amount: 65000,
+      date: new Date(2020, 1, 26),
+    },
+    {
       id: 'expense-02011210',
       title: 'Car Insurance',
       amount: 234.5,
@@ -20,18 +32,10 @@ const App = () => {
     {
       id: 'expense-53714669',
       title: 'Car Installment',
-      amount: 145,
+      amount: 475,
       date: new Date(2021, 3, 3),
     },
   ]);
-
-  const clickHandler = (id) => {
-    const updatedExpenses = expenses.map((expense) =>
-      expense.id === id ? { ...expense, title: 'Updated' } : expense
-    );
-
-    setExpenses(updatedExpenses);
-  };
 
   const formSubmitHandler = (formData) => {
     setExpenses((prevState) => [...prevState, formData]);
@@ -40,7 +44,7 @@ const App = () => {
   return (
     <div className='App'>
       <NewExpense onSubmit={formSubmitHandler} />
-      <Expenses expenses={expenses} onClick={clickHandler} />
+      <Expenses expenses={expenses} />
     </div>
   );
 };
