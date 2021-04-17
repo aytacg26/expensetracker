@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
 
-function App() {
+const App = () => {
+  const [expenses, setExpenses] = useState([
+    {
+      id: 'expense-02011210',
+      title: 'Car Insurance',
+      amount: 234.5,
+      date: new Date(2021, 2, 30),
+    },
+    {
+      id: 'expense-02434811',
+      title: 'Mobile Phone Installment',
+      amount: 34.56,
+      date: new Date(2021, 3, 2),
+    },
+    {
+      id: 'expense-53714669',
+      title: 'Car Installment',
+      amount: 145,
+      date: new Date(2021, 3, 3),
+    },
+  ]);
+
+  const clickHandler = (id) => {
+    const updatedExpenses = expenses.map((expense) =>
+      expense.id === id ? { ...expense, title: 'Updated' } : expense
+    );
+
+    setExpenses(updatedExpenses);
+  };
+
+  const formSubmitHandler = (formData) => {
+    setExpenses((prevState) => [...prevState, formData]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <NewExpense onSubmit={formSubmitHandler} />
+      <Expenses expenses={expenses} onClick={clickHandler} />
     </div>
   );
-}
+};
 
 export default App;
