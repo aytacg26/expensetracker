@@ -1,0 +1,12 @@
+.expenses {
+  max-width: 95vw;
+  width: 750px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px auto;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.84);
+  border-radius: 8px;
+  box-shadow: 0 1px 8px black;
+  border: 1px solid silver;
+}
