@@ -1,7 +1,7 @@
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
 
-const ExpenseItem = ({ date, title, amount, onClick }) => {
+const ExpenseItem = ({ date, title, amount }) => {
   return (
     <div className='expense-item'>
       <ExpenseDate date={date} />
@@ -9,7 +9,6 @@ const ExpenseItem = ({ date, title, amount, onClick }) => {
         <h2>{title}</h2>
         <div className='expense-item__price'>{`$${amount}`}</div>
       </div>
-      <button onClick={onClick}>Change Title</button>
     </div>
   );
 };
