@@ -1,6 +1,7 @@
 import React from 'react';
 import './ExpensesFilter.css';
 import { createArrayRange } from '../../utils/helpers';
+import PropTypes from 'prop-types';
 
 const ExpenseFilter = ({ onYearSelect, selected, initYear }) => {
   const currentYear = new Date().getFullYear();
@@ -24,6 +25,12 @@ const ExpenseFilter = ({ onYearSelect, selected, initYear }) => {
       </div>
     </div>
   );
+};
+
+ExpenseFilter.propTypes = {
+  onYearSelect: PropTypes.func.isRequired,
+  selected: PropTypes.string,
+  initYear: PropTypes.number.isRequired,
 };
 
 export default ExpenseFilter;
