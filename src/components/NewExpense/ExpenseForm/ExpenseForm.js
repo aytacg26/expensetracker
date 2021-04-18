@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ExpenseForm.css';
+import PropTypes from 'prop-types';
 
 const ExpenseForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({ title: '', date: '', amount: '' });
@@ -7,7 +8,11 @@ const ExpenseForm = ({ onSubmit }) => {
   const { title, date, amount } = formData;
 
   const inputHandler = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+
+    if (name === 'amount') {
+      value = parseFloat(value);
+    }
 
     //When state depends on the previous state, it is better to use functional structure in setState function!!
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -80,6 +85,10 @@ const ExpenseForm = ({ onSubmit }) => {
       </div>
     </form>
   );
+};
+
+ExpenseForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ExpenseForm;
