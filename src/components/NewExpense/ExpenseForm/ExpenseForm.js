@@ -3,6 +3,7 @@ import './ExpenseForm.css';
 
 const ExpenseForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({ title: '', date: '', amount: '' });
+  const [showForm, setShowForm] = useState(false);
   const { title, date, amount } = formData;
 
   const inputHandler = (e) => {
@@ -17,10 +18,21 @@ const ExpenseForm = ({ onSubmit }) => {
     const id = `expense-${(Math.random() + 1) * 10}`;
     const date = new Date(formData.date);
 
-    const revisedFormData = { ...formData, date, id };
-    setFormData({ title: '', date: '', amount: '' });
-    onSubmit(revisedFormData);
+    if (title !== '' && date !== '' && amount !== '') {
+      const revisedFormData = { ...formData, date, id };
+      setFormData({ title: '', date: '', amount: '' });
+      setShowForm((prevState) => !prevState);
+      onSubmit(revisedFormData);
+    }
   };
+
+  const showFormHandler = () => {
+    setShowForm((prevState) => !prevState);
+  };
+
+  if (!showForm) {
+    return <button onClick={showFormHandler}>Add New Expense</button>;
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -61,6 +73,9 @@ const ExpenseForm = ({ onSubmit }) => {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button type='button' onClick={showFormHandler}>
+          Cancel
+        </button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
