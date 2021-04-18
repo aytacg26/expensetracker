@@ -1,5 +1,6 @@
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
+import PropTypes from 'prop-types';
 
 const ExpenseItem = ({ date, title, amount }) => {
   return (
@@ -11,6 +12,12 @@ const ExpenseItem = ({ date, title, amount }) => {
       </div>
     </div>
   );
+};
+
+ExpenseItem.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 export default ExpenseItem;
