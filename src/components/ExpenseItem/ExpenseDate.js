@@ -1,4 +1,5 @@
 import './ExpenseDate.css';
+import PropTypes from 'prop-types';
 
 const ExpenseDate = ({ date }) => {
   const month = date.toLocaleString('en-US', { month: 'long' });
@@ -11,6 +12,10 @@ const ExpenseDate = ({ date }) => {
       <div className='expense-date__day'>{day}</div>
     </div>
   );
+};
+
+ExpenseDate.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default ExpenseDate;
